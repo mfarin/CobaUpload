@@ -10,7 +10,7 @@ from visualize_and_counting import visualize, count_accuracy
 
 
 def main():
-    data, label_list = load_object_data(num_training=5000)
+    data, label_list = load_object_data(num_training=6000)
     for k, v in data.items():
         print('%s: ' % k, v.shape)
 
@@ -35,7 +35,7 @@ def main():
     model.add(Dropout(0.25))
 
     model.add(Flatten())
-    model.add(Dense(512, activation='tanh'))
+    model.add(Dense(512, activation='relu'))
     model.add(BatchNormalization())
     model.add(Dropout(0.5))
     model.add(Activation('tanh'))
@@ -43,9 +43,9 @@ def main():
 
     print('===============================================================================================')
     print('Training')
-    print('Using 9e-7 learning rate')
+    print('Using 6-e4 learning rate')
 
-    lr = 9e-7
+    lr = 6e-4
 
     adam = Adam(lr=lr)
     model.compile(loss='categorical_crossentropy',
